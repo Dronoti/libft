@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 14:30:39 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/28 12:39:33 by bkael            ###   ########.fr       */
+/*   Created: 2021/04/26 16:04:05 by bkael             #+#    #+#             */
+/*   Updated: 2021/04/27 16:17:10 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	char	*join;
+	int		i;
 
-	if (!src || !dst)
-		return (0);
-	i = ft_strlen(src);
-	if (dstsize > i + 1)
-		ft_memcpy(dst, src, i + 1);
-	else if (dstsize)
+	i = 0;
+	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!join)
+		return (NULL);
+	while (*s1)
 	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
+		join[i] = *s1;
+		s1++;
+		i++;
 	}
-	return (i);
+	while (*s2)
+	{
+		join[i] = *s2;
+		s2++;
+		i++;
+	}
+	join[i] = '\0';
+	return (join);
 }

@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 14:30:39 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/28 12:39:33 by bkael            ###   ########.fr       */
+/*   Created: 2021/04/26 14:57:01 by bkael             #+#    #+#             */
+/*   Updated: 2021/04/26 14:58:22 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	ft_isascii(int c)
 {
-	size_t	i;
-
-	if (!src || !dst)
-		return (0);
-	i = ft_strlen(src);
-	if (dstsize > i + 1)
-		ft_memcpy(dst, src, i + 1);
-	else if (dstsize)
-	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
-	}
-	return (i);
+	return (c >= 0 && c <= 127);
 }

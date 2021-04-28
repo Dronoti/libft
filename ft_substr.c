@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 14:30:39 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/28 12:39:33 by bkael            ###   ########.fr       */
+/*   Created: 2021/04/26 15:32:05 by bkael             #+#    #+#             */
+/*   Updated: 2021/04/26 16:02:15 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char	*substr;
 	size_t	i;
 
-	if (!src || !dst)
-		return (0);
-	i = ft_strlen(src);
-	if (dstsize > i + 1)
-		ft_memcpy(dst, src, i + 1);
-	else if (dstsize)
+	i = 0;
+	substr = (char *)malloc(sizeof(char) * len + 1);
+	if (!substr)
+		return (NULL);
+	if (start >= ft_strlen(s))
 	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
+		substr[i] = '\0';
+		return (substr);
 	}
-	return (i);
+	while (s[start + i] && i < len)
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
 }

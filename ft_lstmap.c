@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 14:30:39 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/28 12:39:33 by bkael            ###   ########.fr       */
+/*   Created: 2021/04/28 18:02:40 by bkael             #+#    #+#             */
+/*   Updated: 2021/04/28 19:11:10 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
+	t_list	*maplst;
+	t_list	*elem;
 
-	if (!src || !dst)
-		return (0);
-	i = ft_strlen(src);
-	if (dstsize > i + 1)
-		ft_memcpy(dst, src, i + 1);
-	else if (dstsize)
+	if (!lst || !f || !del)
+		return (NULL);
+	maplst = NULL;
+	while (lst)
 	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
+		elem = ft_lstnew(f(lst->content));
+		ft_lstadd_back(&maplst, elem);
+		if (!elem)
+		{
+			ft_lstclear(&maplst, del);
+			break ;
+		}
+		lst = lst->next;
 	}
-	return (i);
+	return (maplst);
 }

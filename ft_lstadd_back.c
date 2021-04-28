@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/24 14:30:39 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/28 12:39:33 by bkael            ###   ########.fr       */
+/*   Created: 2021/04/28 15:45:26 by bkael             #+#    #+#             */
+/*   Updated: 2021/04/28 19:07:03 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	i;
+	t_list	*back;
 
-	if (!src || !dst)
-		return (0);
-	i = ft_strlen(src);
-	if (dstsize > i + 1)
-		ft_memcpy(dst, src, i + 1);
-	else if (dstsize)
+	if (new)
 	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
+		if (!*lst)
+		{
+			*lst = new;
+			return ;
+		}
+		back = *lst;
+		while (back->next)
+			back = back->next;
+		back->next = new;
 	}
-	return (i);
 }

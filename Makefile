@@ -6,7 +6,7 @@
 #    By: bkael <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 12:11:53 by bkael             #+#    #+#              #
-#    Updated: 2021/04/29 16:00:48 by bkael            ###   ########.fr        #
+#    Updated: 2021/04/30 09:56:47 by bkael            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCB = ft_lstnew.c \
 	ft_lstmap.c
 
 OBJ = $(SRC:.c=.o)
+
 OBJB = $(SRCB:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror

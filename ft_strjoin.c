@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 16:04:05 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/27 16:17:10 by bkael            ###   ########.fr       */
+/*   Updated: 2021/04/29 17:49:05 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*join;
 	int		i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!join)

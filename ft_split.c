@@ -6,72 +6,83 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 17:46:49 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/27 18:02:28 by bkael            ###   ########.fr       */
+/*   Updated: 2021/04/30 11:34:14 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_countsplit(char const *s, char c)
+static size_t	ft_countsplit(char const *s, char c)
 {
-	unsigned int	i;
-	int				count;
+	size_t	i;
+	size_t	count;
+	size_t	len;
 
 	i = 0;
 	count = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] && s[i] == c)
 			i++;
-		if (!s[i])
+		len = 0;
+		while (s[i + len] && (s[i + len] != c))
+			len++;
+		if (len)
 			count++;
-		while (s[i] && (s[i] != c))
-			i++;
+		i += len;
 	}
 	return (count);
 }
 
 static void	ft_freearr(char **strsplit, size_t i)
 {
-	while (i--)
+	while (i >= 0)
+	{
 		free(strsplit[i]);
+		i--;
+	}
 	free(strsplit);
+	strsplit = NULL;
 }
 
-static char	**ft_getarr(char **strsplit, char const *s, char c)
+static void	ft_getarr(char **strsplit, char const *s, char c, size_t n)
 {
 	size_t	i;
 	size_t	start;
-	size_t	end;
+	size_t	len;
 
 	i = 0;
-	end = 0;
-	while (s[end])
+	start = 0;
+	strsplit[n] = NULL;
+	while (i < n)
 	{
-		while (s[end] == c)
-			end++;
-		start = end;
-		while (s[end] && s[end] != c)
-			end++;
-		strsplit[i] = ft_substr(s, start, end - start + 1);
+		while (s[start] && s[start] == c)
+			start++;
+		len = 0;
+		while (s[start + len] && s[start + len] != c)
+			len++;
+		strsplit[i] = ft_substr(s, start, len);
 		if (!strsplit[i])
 		{
 			ft_freearr(strsplit, i);
-			return (NULL);
+			return ;
 		}
+		start += len;
 		i++;
 	}
-	strsplit[i] = NULL;
-	return (strsplit);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**strsplit;
+	size_t	n;
 
-	strsplit = (char **)malloc(sizeof(char *) * ft_countsplit(s, c) + 1);
+	if (!s)
+		return (NULL);
+	n = ft_countsplit(s, c);
+	strsplit = (char **)malloc(sizeof(char *) * (n + 1));
 	if (!strsplit)
 		return (NULL);
-	strsplit = ft_getarr(strsplit, s, c);
+	ft_getarr(strsplit, s, c, n);
 	return (strsplit);
 }

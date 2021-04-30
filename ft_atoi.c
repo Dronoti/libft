@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:58:13 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/24 18:35:02 by bkael            ###   ########.fr       */
+/*   Updated: 2021/04/30 11:34:49 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	ft_isspace(int c)
 int	ft_atoi(const char *nptr)
 {
 	unsigned int	i;
-	int				num;
-	int				sign;
+	long			num;
+	long			sign;
 
 	i = 0;
 	num = 0;
@@ -39,6 +39,10 @@ int	ft_atoi(const char *nptr)
 	while (ft_isdigit(nptr[i]))
 	{
 		num = num * 10 + (nptr[i] - '0');
+		if (num > 2147483647 && sign == 1)
+			return (-1);
+		if (num > 2147483648 && sign == -1)
+			return (0);
 		i++;
 	}
 	return (num * sign);

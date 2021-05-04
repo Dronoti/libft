@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 15:58:13 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/30 11:34:49 by bkael            ###   ########.fr       */
+/*   Updated: 2021/05/04 13:34:07 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	ft_isspace(int c)
 int	ft_atoi(const char *nptr)
 {
 	unsigned int	i;
-	long			num;
-	long			sign;
+	long long		num;
+	long long		sign;
 
 	i = 0;
 	num = 0;

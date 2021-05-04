@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 18:02:40 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/29 18:20:25 by bkael            ###   ########.fr       */
+/*   Updated: 2021/05/04 13:00:09 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*maplst;
 	t_list	*elem;
 
-	if (!lst || !f)
+	if (!lst || !f || !del)
 		return (NULL);
 	maplst = NULL;
 	while (lst)

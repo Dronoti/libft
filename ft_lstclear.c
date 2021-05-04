@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:09:47 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/28 17:20:48 by bkael            ###   ########.fr       */
+/*   Updated: 2021/05/04 12:47:46 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*current;
 	t_list	*prev;
 
-	current = *lst;
 	if (lst && del)
 	{
+		current = *lst;
 		while (current)
 		{
 			prev = current;

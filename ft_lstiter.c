@@ -6,7 +6,7 @@
 /*   By: bkael <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 17:28:58 by bkael             #+#    #+#             */
-/*   Updated: 2021/04/28 19:09:18 by bkael            ###   ########.fr       */
+/*   Updated: 2021/05/04 12:51:09 by bkael            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst)
+	if (lst && f)
 	{
-		f(lst->content);
-		lst = lst->next;
+		while (lst)
+		{
+			f(lst->content);
+			lst = lst->next;
+		}
 	}
 }

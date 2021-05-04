@@ -6,13 +6,11 @@
 #    By: bkael <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 12:11:53 by bkael             #+#    #+#              #
-#    Updated: 2021/04/30 09:56:47 by bkael            ###   ########.fr        #
+#    Updated: 2021/05/04 17:09:12 by bkael            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-
-HDRS = libft.h
 
 SRC = ft_atoi.c \
 	ft_bzero.c \
@@ -65,15 +63,16 @@ OBJB = $(SRCB:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
-$(NAME): $(OBJ)
-	gcc $(FLAGS) -c $(SRC) -I $(HDRS)
-	ar rcs $(NAME) $(OBJ)
-
 all: $(NAME)
 
-bonus: $(OBJB)
-	gcc $(FLAGS) -c $(SRCB) -I $(HDRS)
-	ar rcs $(NAME) $(OBJB)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $?
+
+.c.o:
+	gcc $(FLAGS) -I ./ -c $< -o $@
+	
+bonus: $(NAME) $(OBJB)
+	ar rcs $?
 	
 clean:
 	rm -f $(OBJ) $(OBJB)

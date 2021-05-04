@@ -6,7 +6,7 @@
 #    By: bkael <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/29 12:11:53 by bkael             #+#    #+#              #
-#    Updated: 2021/05/04 17:09:12 by bkael            ###   ########.fr        #
+#    Updated: 2021/05/04 19:00:30 by bkael            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,14 +65,14 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
+bonus: $(OBJB)
+	@ar rcs $(NAME) $?
+
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $?
+	@ar rcs $(NAME) $?
 
 .c.o:
 	gcc $(FLAGS) -I ./ -c $< -o $@
-	
-bonus: $(NAME) $(OBJB)
-	ar rcs $?
 	
 clean:
 	rm -f $(OBJ) $(OBJB)

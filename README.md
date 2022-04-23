@@ -63,9 +63,9 @@ git clone https://github.com/Dronoti/libft.git libft && cd libft && make && make
 ```C
 #include "libft.h"
 ```
-и добавить необходимые флаги при компиляции проекта
+и добавить библиотеку при компиляции проекта
 ```bash
--lft -L path/to/libft.a -I path/to/libft.h
+path/to/libft.a -I path/to/libft.h
 ```
 
 ### Дополнительно
